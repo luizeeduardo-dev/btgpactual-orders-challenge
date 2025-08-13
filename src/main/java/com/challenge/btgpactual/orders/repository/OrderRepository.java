@@ -1,19 +1,11 @@
 package com.challenge.btgpactual.orders.repository;
 
 import com.challenge.btgpactual.orders.entity.Order;
-import java.util.concurrent.ConcurrentHashMap;
-import org.springframework.stereotype.Component;
+import java.util.Optional;
 
-@Component
-public class OrderRepository {
+public interface OrderRepository {
 
-  private final ConcurrentHashMap<String, Order> orders = new ConcurrentHashMap<>();
+  void save(Order order);
 
-  public void save(Order order) {
-    this.orders.put(order.getId(), order);
-  }
-
-  public Order getOrderById(String id) {
-    return this.orders.get(id);
-  }
+  Optional<Order> findById(String id);
 }

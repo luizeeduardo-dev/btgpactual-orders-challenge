@@ -1,5 +1,6 @@
 package com.challenge.btgpactual.orders.entity;
 
+import com.challenge.btgpactual.orders.dto.OrderResponse;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -21,5 +22,13 @@ public class Order {
     this.clientId = clientId;
     this.items = items;
     this.status = Status.PENDENTE;
+  }
+
+  public static Order fromResponse(OrderResponse orderResponse) {
+    return new Order(
+        orderResponse.id(),
+        orderResponse.clientId(),
+        orderResponse.items(),
+        orderResponse.status());
   }
 }
