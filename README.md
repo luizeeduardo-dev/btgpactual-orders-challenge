@@ -78,8 +78,8 @@ Você pode usar ferramentas como `curl` ou Postman para interagir com a API.
 curl --location 'http://localhost:8080/orders' \
 --header 'Content-Type: application/json' \
 --data '{
-    "clientId": "4440e442-ae43-4c90-b2d4-a598464b551b",
-    "items": ["Licensed Steel Chicken,Tasty Metal Pizza,Ergonomic Steel Gloves"]
+    "clientId": "{{$randomUUID}}",
+    "items": ["{{$randomProductName}},{{$randomProductName}}]
 }'
 ```
 
