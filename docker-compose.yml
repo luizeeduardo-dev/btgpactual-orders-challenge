@@ -1,0 +1,24 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  orders:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_LISTENER_SIMPLE_RETRY_ENABLED=true
+      - SPRING_RABBITMQ_LISTENER_SIMPLE_RETRY_MAX-ATTEMPTS=5
+      - SPRING_RABBITMQ_LISTENER_SIMPLE_RETRY_INITIAL-INTERVAL=2000

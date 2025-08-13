@@ -13,12 +13,13 @@ import org.springframework.stereotype.Component;
 public class OrderConsumer {
 
   private final OrderRepository repository;
+  public static final String QUEUE_NAME = "orders-queue";
 
   public OrderConsumer(OrderRepository repository) {
     this.repository = repository;
   }
 
-  @RabbitListener(queues = "orders-queue")
+  @RabbitListener(queues = QUEUE_NAME)
   public void processOrder(String orderId) {
     log.info("Pedido recebido para processamento: {}", orderId);
 
