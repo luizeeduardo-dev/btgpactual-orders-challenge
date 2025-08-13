@@ -75,11 +75,11 @@ Você pode usar ferramentas como `curl` ou Postman para interagir com a API.
 #### 1. Criar um Novo Pedido
 
 ```bash
-curl -X POST http://localhost:8080/orders \
--H "Content-Type: application/json" \
--d '{
-    "clientId": "cliente-123",
-    "items": ["item-A", "item-B"]
+curl --location 'http://localhost:8080/orders' \
+--header 'Content-Type: application/json' \
+--data '{
+    "clientId": "4440e442-ae43-4c90-b2d4-a598464b551b",
+    "items": ["Licensed Steel Chicken,Tasty Metal Pizza,Ergonomic Steel Gloves"]
 }'
 ```
 
