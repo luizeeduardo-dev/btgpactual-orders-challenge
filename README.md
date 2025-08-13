@@ -1,4 +1,10 @@
-# Desafio Técnico – Sistema de Processamento de Pedidos Assíncrono
+<h1 align="center">
+  Desafio Técnico
+</h1>
+<p align="center">
+
+  <img alt="Language: Java" src="https://img.shields.io/badge/language-java-green">
+  <img alt="Version: 1.0" src="https://img.shields.io/badge/version-1.0-yellowgreen">
 
 Este é um sistema de processamento de pedidos desenvolvido como parte do desafio técnico do BTG Pactual. A aplicação recebe pedidos via API REST, os publica em uma fila para processamento assíncrono e permite a consulta de status.
 
