@@ -1,12 +1,3 @@
-# Desafio Técnico – Sistema de Processamento de Pedidos Assíncrono
-
-Este é um sistema de processamento de pedidos desenvolvido como parte do desafio técnico do BTG
-Pactual. A aplicação recebe pedidos via API REST, os publica em uma fila para processamento
-assíncrono e permite a consulta de status.
-
-A arquitetura utiliza uma abordagem de microsserviços com comunicação via mensageria, focada em boas
-práticas de desenvolvimento.
-
 **Tecnologias:**
 
 * Java 21
@@ -46,18 +37,18 @@ dentro da pasta `target/`.
 Com o Docker e Docker Compose instalados, você pode iniciar toda a aplicação (API de Pedidos +
 RabbitMQ) com um único comando.
 
-1. **Clone o repositório** (se ainda não o fez):
-   ```bash
-   git clone <url-do-seu-repositorio>
-   cd <nome-da-pasta-do-projeto>
-   ```
+1.  **Clone o repositório** (se ainda não o fez):
+    ```bash
+    git clone <url-do-seu-repositorio>
+    cd <nome-da-pasta-do-projeto>
+    ```
 
-2. **Construa o JAR** conforme o passo anterior.
+2.  **Construa o JAR** conforme o passo anterior.
 
-3. **Inicie os contêineres** usando Docker Compose:
-   ```bash
-   docker-compose up --build
-   ```
+3.  **Inicie os contêineres** usando Docker Compose:
+    ```bash
+    docker-compose up --build
+    ```
     * O comando `up` inicia os serviços definidos no arquivo `docker-compose.yml`.
     * A flag `--build` força o Docker a reconstruir a imagem da sua aplicação `orders` usando o
       `Dockerfile`, garantindo que as últimas alterações do código sejam incluídas.
@@ -82,11 +73,11 @@ Você pode usar ferramentas como `curl` ou Postman para interagir com a API.
 #### 1. Criar um Novo Pedido
 
 ```bash
-curl -X POST http://localhost:8080/orders \
--H "Content-Type: application/json" \
--d '{
-    "clientId": "cliente-123",
-    "items": ["item-A", "item-B"]
+curl --location 'http://localhost:8080/orders' \
+--header 'Content-Type: application/json' \
+--data '{
+    "clientId": "{{$randomUUID}}",
+    "items": ["{{$randomProductName}},{{$randomProductName}}]
 }'
 ```
 
