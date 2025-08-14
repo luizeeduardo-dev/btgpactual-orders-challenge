@@ -1,72 +1,75 @@
-# Desafio Técnico – Sistema de Processamento de Pedidos Assíncrono
+# Sistema de Processamento de Pedidos Assíncrono - Challenge BTG Pactual
 
-Este é um sistema de processamento de pedidos desenvolvido como parte do desafio técnico do BTG
-Pactual. A aplicação recebe pedidos via API REST, os publica em uma fila para processamento
-assíncrono e permite a consulta de status.
+---
 
-A arquitetura utiliza uma abordagem de microsserviços com comunicação via mensageria, focada em boas
-práticas de desenvolvimento.
+<img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-%2304D361">
+<img alt="Language: Java" src="https://img.shields.io/badge/language-java-green">
+<img alt="Version: 1.0" src="https://img.shields.io/badge/version-1.0-yellowgreen">
 
-**Tecnologias:**
+## Visão Geral
 
-* Java 21
-* Spring Boot 3
-* RabbitMQ
-* Docker & Docker Compose
+Este é um sistema backend que simula o processamento assíncrono de pedidos, desenvolvido como parte do desafio técnico do BTG Pactual. A aplicação expõe uma API REST para criação e consulta de pedidos, utilizando RabbitMQ para gerenciar o fluxo de processamento de forma desacoplada e resiliente.
+
+### Tecnologias
+* Java
 * Maven
+* RabbitMQ
+* Spring Boot 3
+* JUnit 5 & Mockito
+* Docker & Docker Compose
+
+---
 
 ## Pré-requisitos
 
-Antes de começar, garanta que você tenha as seguintes ferramentas instaladas na sua máquina:
+* Docker & Docker Compose
+* Java 21 e Maven 3.9+ (Opcional, para builds manuais)
+* `curl` ou Postman para testar a API
 
-* [Docker](https://www.docker.com/get-started/)
-* [Docker Compose](https://docs.docker.com/compose/install/) * Se estiver usando Docker Desktop, o Docker Compose já está incluído
-* Postman ou curl para testar a API
+---
 
-## Como Executar o Ambiente Completo
+## Como Executar
 
-Com o Docker e Docker Compose instalados, você pode iniciar toda a aplicação (API de Pedidos +
-RabbitMQ) com um único comando.
+O ambiente é 100% containerizado. Com o Docker em execução, basta um único comando para iniciar toda a aplicação.
 
-1.  **Clone o repositório** (se ainda não o fez):
+1.  **Clone o repositório:**
     ```bash
     git clone https://github.com/luizeeduardo-dev/btgpactual-orders-challenge.git
     cd btgpactual-orders-challenge
     ```
 
-3.  **Inicie os contêineres** usando Docker Compose:
+2.  **Inicie os contêineres:**
     ```bash
     docker-compose up --build
     ```
-    * O comando `up` inicia os serviços definidos no arquivo `docker-compose.yml`.
-    * A flag `--build` força o Docker a reconstruir a imagem da aplicação usando o
-      `Dockerfile`.
+    A flag `--build` garante que a imagem da sua aplicação seja construída a partir do `Dockerfile` multi-stage, que compila e empacota o projeto automaticamente.
 
-## Acessando a Aplicação
+---
 
-Após a inicialização, os seguintes serviços estarão disponíveis:
+## Acessando os Serviços
 
 * **API de Pedidos:**
-    * A API estará rodando em `http://localhost:8080`.
-
+    * A API estará rodando em: **[http://localhost:8080]()**
 
 * **Painel de Gerenciamento do RabbitMQ:**
-    * Acesse em: `http://localhost:15672`
+    * Acesse em: **[http://localhost:15672]()**
     * **Login:** `admin`
     * **Senha:** `admin`
 
-## Exemplos de Uso da API
+---
 
-Você pode usar ferramentas como `curl` ou Postman para interagir com a API.
+## Como Testar a API
+
+A forma mais fácil de testar é através da interface do **Swagger UI**. Alternativamente, você pode usar os comandos `curl` abaixo.
 
 #### 1. Criar um Novo Pedido
 
 ```bash
-curl --location 'http://localhost:8080/orders' \
---header 'Content-Type: application/json' \
---data '{
-    "clientId": "{{$randomUUID}}",
-    "items": ["{{$randomProductName}},{{$randomProductName}}]
+curl -X POST http://localhost:8080/orders \
+-H "Content-Type: application/json" \
+-d '{
+    "clientId": "client-123",
+    "items": ["item-A", "item-B", "item-C"]
 }'
 ```
 
@@ -79,14 +82,30 @@ Copie o `id` retornado na criação do pedido e use-o na URL abaixo.
 curl -X GET http://localhost:8080/orders/{ORDER_ID}
 ```
 
-Inicialmente, o status será `PENDENTE`. Após alguns segundos, ao consultar novamente, o status
-mudará para `PROCESSADO`.
+* **Inicialmente,** o status será `PENDENTE`.
+* **Após alguns segundos,** ao consultar novamente, o status mudará para `PROCESSADO`.
+
+---
+
+## Como Rodar os Testes
+
+O projeto possui uma suíte completa de testes de unidade e de integração. Para executá-los, use o Maven Wrapper:
+
+```bash
+./mvnw test
+```
+
+---
 
 ## Parando a Aplicação
 
-Para parar todos os contêineres e remover a rede criada pelo Compose, pressione `Ctrl + C` no
-terminal onde o `docker-compose up` está rodando e, em seguida, execute:
-
+Para parar todos os contêineres, pressione `Ctrl + C` no terminal onde o `docker-compose` está rodando e execute:
 ```bash
 docker-compose down
 ```
+
+---
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
