@@ -20,26 +20,8 @@ práticas de desenvolvimento.
 Antes de começar, garanta que você tenha as seguintes ferramentas instaladas na sua máquina:
 
 * [Docker](https://www.docker.com/get-started/)
-* [Docker Compose](https://docs.docker.com/compose/install/)
-* Postman
-
-## Como Construir a Aplicação
-
-Para que o Docker possa criar a imagem da aplicação, primeiro é necessário empacotar o projeto em um
-arquivo JAR.
-
-Na raiz do projeto, execute o seguinte comando Maven:
-
-```bash
-# No Windows (usando o Maven Wrapper)
-./mvnw clean package
-
-# No Linux/macOS
-./mvnw clean package
-```
-
-Este comando irá limpar o projeto, rodar os testes e gerar o arquivo `orders-0.0.1-SNAPSHOT.jar`
-dentro da pasta `target/`.
+* [Docker Compose](https://docs.docker.com/compose/install/) * Se estiver usando Docker Desktop, o Docker Compose já está incluído
+* Postman ou curl para testar a API
 
 ## Como Executar o Ambiente Completo
 
@@ -48,19 +30,17 @@ RabbitMQ) com um único comando.
 
 1.  **Clone o repositório** (se ainda não o fez):
     ```bash
-    git clone <url-do-seu-repositorio>
-    cd <nome-da-pasta-do-projeto>
+    git clone https://github.com/luizeeduardo-dev/btgpactual-orders-challenge.git
+    cd btgpactual-orders-challenge
     ```
-
-2.  **Construa o JAR** conforme o passo anterior.
 
 3.  **Inicie os contêineres** usando Docker Compose:
     ```bash
     docker-compose up --build
     ```
     * O comando `up` inicia os serviços definidos no arquivo `docker-compose.yml`.
-    * A flag `--build` força o Docker a reconstruir a imagem da sua aplicação `orders` usando o
-      `Dockerfile`, garantindo que as últimas alterações do código sejam incluídas.
+    * A flag `--build` força o Docker a reconstruir a imagem da aplicação usando o
+      `Dockerfile`.
 
 ## Acessando a Aplicação
 
