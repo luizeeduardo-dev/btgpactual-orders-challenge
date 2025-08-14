@@ -1,3 +1,12 @@
+# Desafio Técnico – Sistema de Processamento de Pedidos Assíncrono
+
+Este é um sistema de processamento de pedidos desenvolvido como parte do desafio técnico do BTG
+Pactual. A aplicação recebe pedidos via API REST, os publica em uma fila para processamento
+assíncrono e permite a consulta de status.
+
+A arquitetura utiliza uma abordagem de microsserviços com comunicação via mensageria, focada em boas
+práticas de desenvolvimento.
+
 **Tecnologias:**
 
 * Java 21
