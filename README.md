@@ -1,7 +1,5 @@
 # Sistema de Processamento de Pedidos Assíncrono - Challenge BTG Pactual
 
----
-
 <p align="center">
     <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-%2304D361">
     <img alt="Language: Java" src="https://img.shields.io/badge/language-java-green">
