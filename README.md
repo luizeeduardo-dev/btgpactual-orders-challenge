@@ -68,23 +68,41 @@ a aplicação.
 
 ## Como Testar a API
 
-A forma mais fácil de testar é através da interface do **Swagger UI**. Alternativamente, você pode
-usar os comandos `curl` abaixo.
+Você pode interagir com a API usando os comandos `curl` fornecidos abaixo ou importando a coleção do Postman que acompanha o projeto para uma experiência de teste mais fácil.
+
+### Usando o Postman (Recomendado)
+
+Uma coleção do Postman com as requisições prontas está incluída neste repositório para facilitar os testes.
+
+1.  Abra o aplicativo Postman.
+2.  Clique no botão **Import** no canto superior esquerdo.
+3.  Selecione a aba **File** e clique em **Upload Files**.
+4.  Navegue até a raiz deste projeto e selecione o arquivo: [btgPactual challenger.postman_collection.json](postman/btgPactual challenger.postman_collection.json).
+5.  Clique em **Import**.
+
+Uma nova coleção chamada "BTG Orders API" aparecerá na sua barra lateral.
+
+* **Para criar um pedido:** Execute a requisição `POST Criar Pedido`.
+* **Para consultar um pedido:** Copie o valor do campo `id` da resposta da requisição de criação e cole-o na variável `orderId` da requisição `GET Consultar Pedido` antes de executá-la.
+
+### Usando cURL
 
 #### 1. Criar um Novo Pedido
+
+Execute o comando abaixo no seu terminal.
 
 ```bash
 curl -X POST http://localhost:8080/orders \
 -H "Content-Type: application/json" \
 -d '{
-    "clientId": "client-123",
-    "items": ["item-A", "item-B", "item-C"]
+    "clientId": "cliente-abc-123",
+    "items": ["produto-A", "produto-B", "produto-C"]
 }'
 ```
 
 #### 2. Consultar o Status de um Pedido
 
-Copie o `id` retornado na criação do pedido e use-o na URL abaixo.
+Copie o `id` retornado no corpo da resposta da criação do pedido e use-o na URL abaixo.
 
 ```bash
 # Substitua {ORDER_ID} pelo ID do seu pedido
