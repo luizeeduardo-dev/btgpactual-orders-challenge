@@ -75,7 +75,7 @@ Uma coleção do Postman com as requisições prontas está incluída neste repo
 1.  Abra o aplicativo Postman.
 2.  Clique no botão **Import** no canto superior esquerdo.
 3.  Selecione a aba **File** e clique em **Upload Files**.
-4.  Navegue até a raiz deste projeto e selecione o arquivo: [btgPactual_challenger.postman_collection.json]().
+4.  Navegue até a raiz deste projeto e selecione o arquivo: [btgPactual_challenger.postman_collection.json](postman/btgPactual_challenger.postman_collection.json).
 5.  Clique em **Import**.
 
 Uma nova coleção chamada "BTG Orders API" aparecerá na sua barra lateral.
